@@ -39,19 +39,6 @@ const alerteCommand = function alerte (req, res) {
 				res.status(200).json(json_erreur);
 				return;
 			}
-
-			
-			horaires = parseHoraires(body);
-			
-			
-			for (dest in horaires.dests){
-				var value="";
-				for (heure in horaires.dests[dest].heures){
-					value += (prettyDate(horaires.dests[dest].heures[heure]) + " | ");
-				}
-				value=value.slice(0,-3);
-				fields.push({"title": "vers " + horaires.dests[dest].nom + " :", "value": value, "short": false})
-			}
 			
 			var fields=[];
 			for(alert in body.records){
