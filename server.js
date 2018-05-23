@@ -2,6 +2,7 @@ var express = require('express');
 var fs = require("fs");
 var bodyParser = require('body-parser');
 const busCommand = require('./busCommand');
+const veloCommand = require('./veloCommand');
 
 var app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -13,7 +14,10 @@ app.post('/coucou', function (req, res) {
 app.post('/bus', function (req, res){
 	busCommand(req, res);
 });
-	
+
+app.post('/velo', function (req, res){
+	veloCommand(req, res);
+});	
 
 app.get('/test', function (req, res) {
 

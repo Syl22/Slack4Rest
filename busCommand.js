@@ -66,7 +66,7 @@ const busCommand = function bus (req, res) {
 				]
 			}
 			res.status(200).json(json_reponse);
-	});
+		});
 	}
 	
 	else {
