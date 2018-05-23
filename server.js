@@ -3,6 +3,7 @@ var fs = require("fs");
 var bodyParser = require('body-parser');
 const busCommand = require('./busCommand');
 const veloCommand = require('./veloCommand');
+const alerteCommand = require('./alerteCommand');
 
 var app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -18,6 +19,11 @@ app.post('/bus', function (req, res){
 app.post('/velo', function (req, res){
 	veloCommand(req, res);
 });	
+
+app.post('/alerte', function (req, res){
+	alerteCommand(req, res);
+});	
+
 
 app.get('/test', function (req, res) {
 
