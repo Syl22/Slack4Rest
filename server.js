@@ -1,5 +1,4 @@
 var express = require('express');
-var fs = require("fs");
 var bodyParser = require('body-parser');
 const busCommand = require('./busCommand');
 const veloCommand = require('./veloCommand');
