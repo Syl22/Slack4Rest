@@ -12,7 +12,7 @@ Développement d'un plugin simple utilisant les jeux de données du Star pour li
 /velo [nom station]
 ```
 ```
-/alert [n° ligne]
+/alerte [n° ligne]
 ```
 
 ## Deuxième version
