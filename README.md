@@ -1,6 +1,6 @@
 # Slack4Rest
 
-Ce projet est basé sur la plateforme Slack. Celle-ci permet l'intégration d'applications tierces, qui se servent de commandes slash ('/commande') pour être appelées depuis Slack. Le but de ce projet est de se servir de cette fonctionnalité pour faire appel à des API Rest. Il est pour le moment essentiellement basé sur ([l'API Star](https://data.explore.star.fr/explore/?sort=title)).
+Ce projet est basé sur la plateforme Slack. Celle-ci permet l'intégration d'applications tierces, qui se servent de commandes slash ('/commande') pour être appelées depuis Slack. Le but de ce projet est de se servir de cette fonctionnalité pour faire appel à des API Rest. Il est pour le moment essentiellement basé sur [l'API Star](https://data.explore.star.fr/explore/?sort=title).
 
 ## Première version
 
