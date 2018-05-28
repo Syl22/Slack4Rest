@@ -1,5 +1,8 @@
 # See http://help.github.com/ignore-files/ for more about ignoring files.
 
+# perso
+/db_slackbutton_slash_command
+
 # compiled output
 /dist
 /dist-server

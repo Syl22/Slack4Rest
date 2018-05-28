@@ -1,0 +1,25 @@
+{
+    "command": "velo",
+    "request": {
+        "method": "GET",
+        "uri": "https://data.explore.star.fr/api/records/1.0/search",
+        "query_params": {
+            "dataset": "vls-stations-etat-tr",
+            "refine.nom": "Armorique"
+        }
+    },
+    "response": {
+        "title": "Vélos disponibles $0 $1",
+        "text": "",
+        "fields": [
+            {
+                "title": "Vélos disponibles",
+                "value": "$.records[0].fields.nombrevelosdisponibles"
+            },
+            {
+                "title": "Emplacements disponibles",
+                "value": "$.records[0].fields.nombreemplacementsdisponibles"
+            }
+        ]
+    }
+}

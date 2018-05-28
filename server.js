@@ -1,40 +1,81 @@
-var express = require('express');
-var bodyParser = require('body-parser');
-const busCommand = require('./busCommand');
-const veloCommand = require('./veloCommand');
-const alerteCommand = require('./alerteCommand');
+var Botkit = require('botkit');
+var jsonfile = require('jsonfile');
+var request = require('request');
 
-var app = express();
-app.use(bodyParser.urlencoded({ extended: false }));
+if (!process.env.CLIENT_ID || !process.env.CLIENT_SECRET || !process.env.PORT || !process.env.VERIFICATION_TOKEN) {
+    console.log('Error: Specify CLIENT_ID, CLIENT_SECRET, VERIFICATION_TOKEN and PORT in environment');
+    process.exit(1);
+}
 
-app.post('/coucou', function (req, res) {
-	res.status(200).json({ text: "Coucou !" });
-})
+var config = {
+    json_file_store: './db_slackbutton_slash_command/',
+};
 
-app.post('/bus', function (req, res){
-	busCommand(req, res);
+var controller = Botkit.slackbot(config).configureSlackApp(
+    {
+        clientId: process.env.CLIENT_ID,
+        clientSecret: process.env.CLIENT_SECRET,
+        scopes: ['commands'],
+    }
+);
+
+controller.setupWebserver(process.env.PORT, function (err, webserver) {
+    controller.createWebhookEndpoints(controller.webserver);
+
+    controller.createOauthEndpoints(controller.webserver, function (err, req, res) {
+        if (err) {
+            res.status(500).send('ERROR: ' + err);
+        } else {
+            res.send('Success!');
+        }
+    });
+
 });
 
-app.post('/velo', function (req, res){
-	veloCommand(req, res);
-});	
+controller.on('slash_command', function (bot, message) {
 
-app.post('/alerte', function (req, res){
-	alerteCommand(req, res);
-});	
+    if (message.command !== "/testv") {
+        return;
+    }
 
+    // make sure the token matches
+    if (message.token !== process.env.VERIFICATION_TOKEN) return; //just ignore it.
 
-app.get('/test', function (req, res) {
+    // if no text was supplied, treat it as a help command
+    if (message.text === "" || message.text === "help") {
+        bot.replyPrivate(message, "help message");
+        return;
+    }
 
-	res.end("Hello le monde");
+    let args = message.text.split(" ");
+    let cmd = args.shift();
 
-})
+    let cmdFile = jsonfile.readFileSync('commands/' + cmd + '.json');
 
-var server = app.listen(80, function () {
+    // make the request
+    let options = {
+        method: cmdFile.request.method,
+        uri: cmdFile.request.uri,
+        qs: cmdFile.request.query_params
+    };
 
-	var host = server.address().address
-	var port = server.address().port
+    function replaceParams(str) {
+        return str.replace(/\$([0-9])/g, (c, p1) => args[p1]);
+    }
 
-	console.log("Example app listening at http://%s:%s", host, port)
+    function replaceResponse(str) {
 
-})
+    }
+
+    request(options, function (err, res, body) {
+        let reply = {
+            attachments: [{
+                title: replaceParams(cmdFile.response.title),
+                fields: cmdFile.response.fields
+            }]
+        };
+
+        bot.replyPrivate(message, reply);
+    });
+
+});
