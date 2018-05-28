@@ -1,6 +1,7 @@
 var Botkit = require('botkit');
 var jsonfile = require('jsonfile');
 var request = require('request');
+var jp = require('jsonpath');
 
 if (!process.env.CLIENT_ID || !process.env.CLIENT_SECRET || !process.env.PORT || !process.env.VERIFICATION_TOKEN) {
     console.log('Error: Specify CLIENT_ID, CLIENT_SECRET, VERIFICATION_TOKEN and PORT in environment');
@@ -47,6 +48,42 @@ controller.on('slash_command', function (bot, message) {
         return;
     }
 
+    function rParams(str) {
+        return str.replace(/\$([0-9])/g, (c, p1) => args[p1]);
+    }
+
+    function rJson(str, obj) {
+        return str.replace(/(\$\.[^ ]+)/g, (c, p1) => jp.query(obj, p1)[0]);
+    }
+
+    function rAll(str, json) {
+        return rParams(rJson(str, json));
+    }
+
+    function mapObj(obj, func) {
+        let res = {};
+        for (let key in obj) {
+            if (obj.hasOwnProperty(key)) {
+                res[func(key)] = func(obj[key]);
+            }
+        }
+        return res;
+    }
+
+    function processFields(fields, json) {
+        let res = [];
+        for (let key in fields) {
+            if (fields.hasOwnProperty(key)) {
+                res.push({
+                    "title": rAll(key, json),
+                    "value": rAll(fields[key], json)
+                });
+            }
+        }
+        return res;
+    }
+
+    // TODO: paramètres avec espaces
     let args = message.text.split(" ");
     let cmd = args.shift();
 
@@ -56,22 +93,15 @@ controller.on('slash_command', function (bot, message) {
     let options = {
         method: cmdFile.request.method,
         uri: cmdFile.request.uri,
-        qs: cmdFile.request.query_params
+        qs: mapObj(cmdFile.request.query_params, rParams),
+        json: true
     };
-
-    function replaceParams(str) {
-        return str.replace(/\$([0-9])/g, (c, p1) => args[p1]);
-    }
-
-    function replaceResponse(str) {
-
-    }
 
     request(options, function (err, res, body) {
         let reply = {
             attachments: [{
-                title: replaceParams(cmdFile.response.title),
-                fields: cmdFile.response.fields
+                title: rAll(cmdFile.response.title),
+                fields: processFields(cmdFile.response.fields, body)
             }]
         };
 
