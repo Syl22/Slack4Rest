@@ -1,11 +1,10 @@
 {
-  "command": "velo",
+  "command": "weather",
   "request": {
     "method": "GET",
-    "uri": "https://data.explore.star.fr/api/records/1.0/search",
+    "uri": "https://api.openweathermap.org/data/2.5/weather",
     "query_params": {
-      "dataset": "vls-stations-etat-tr",
-      "refine.nom": "$0"
+      "q": "Rennes,fr"
     }
   },
   "response": {

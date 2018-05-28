@@ -7,7 +7,9 @@
   "license": "ISC",
   "dependencies": {
     "botkit": "^0.6.14",
+    "formidable": "^1.2.1",
     "jsonfile": "^4.0.0",
+    "jsonpath": "^1.0.0",
     "request": "^2.87.0"
   }
 }
