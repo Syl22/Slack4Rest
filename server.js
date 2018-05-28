@@ -2,6 +2,7 @@ var Botkit = require('botkit');
 var jsonfile = require('jsonfile');
 var request = require('request');
 var jp = require('jsonpath');
+const upload = require('./upload');
 
 if (!process.env.CLIENT_ID || !process.env.CLIENT_SECRET || !process.env.PORT || !process.env.VERIFICATION_TOKEN) {
     console.log('Error: Specify CLIENT_ID, CLIENT_SECRET, VERIFICATION_TOKEN and PORT in environment');
@@ -30,12 +31,12 @@ controller.setupWebserver(process.env.PORT, function (err, webserver) {
             res.send('Success!');
         }
     });
-
+	upload();
 });
 
 controller.on('slash_command', function (bot, message) {
 
-    if (message.command !== "/testv") {
+    if (message.command !== "/cmd") {
         return;
     }
 
