@@ -36,7 +36,7 @@ controller.setupWebserver(process.env.PORT, function (err, webserver) {
 
 controller.on('slash_command', function (bot, message) {
 
-    if (message.command !== "/testv") {
+    if (message.command !== "/cmd") {
         return;
     }
 
