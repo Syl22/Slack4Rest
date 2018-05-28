@@ -99,8 +99,9 @@ controller.on('slash_command', function (bot, message) {
 
     request(options, function (err, res, body) {
         let reply = {
+            text: rAll(cmdFile.response.text, body),
             attachments: [{
-                title: rAll(cmdFile.response.title),
+                title: rAll(cmdFile.response.title, body),
                 fields: processFields(cmdFile.response.fields, body)
             }]
         };

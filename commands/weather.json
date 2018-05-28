@@ -4,15 +4,15 @@
     "method": "GET",
     "uri": "https://api.openweathermap.org/data/2.5/weather",
     "query_params": {
-      "q": "Rennes,fr"
+      "q": "$0,$1",
+      "appid": "8c90a6a5115c32c983b41f8ff2fdefab"
     }
   },
   "response": {
-    "title": "Station $0",
+    "title": "",
     "text": "",
     "fields": {
-      "Vélos disponibles": "$.records[0].fields.nombrevelosdisponibles",
-      "Emplacements disponibles": "$.records[0].fields.nombreemplacementsdisponibles"
+      "Weather at $.name": "$.weather[0].main : $.weather[0].description"
     }
   }
 }
