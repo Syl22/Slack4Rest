@@ -1,0 +1,22 @@
+{
+  "command": "bus",
+  "request": {
+    "method": "GET",
+    "uri": "https://data.explore.star.fr/api/records/1.0/search",
+    "query_params": {
+      "dataset": "tco-bus-circulation-passages-tr",
+      "refine.nomcourtligne": "$0",
+      "refine.nomarret": "$1",
+      "refine.destination": "$2",
+	  "timezone":"Europe/Paris",
+      "sort": "-arrivee"
+    }
+  },
+  "response": {
+    "title": "Ligne $0 arrêt $1 direction $2",
+    "text": "",
+    "fields": {
+      "Heure du prochain bus": "$.records[0].fields.arrivee"
+    }
+  }
+}
