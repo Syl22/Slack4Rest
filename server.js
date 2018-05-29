@@ -84,8 +84,20 @@ controller.on('slash_command', function (bot, message) {
         return res;
     }
 
+    function replaceAll(str, search, replacement) {
+            let target = str;
+            return target.replace(new RegExp(search, 'g'), replacement);
+    };
+
     // TODO: paramètres avec espaces
-    let args = message.text.split(" ");
+    //let args = message.text.split(" ");
+    let regexp = /([^"]\S*|".+?")\s*/gm;
+    let text = message.text;
+    let args = text.split(regexp);
+    args = args.filter(ch=>ch);
+    for (var i = 0; i < args.length; i++) {
+        args[i] = replaceAll(args[i], "\"", "");
+    }
     let cmd = args.shift();
 
     let cmdFile = jsonfile.readFileSync('commands/' + cmd + '.json');
