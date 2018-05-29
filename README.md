@@ -17,7 +17,12 @@ Développement d'un plugin simple utilisant les jeux de données du Star pour li
 
 ## Deuxième version
 
-In progress
+Développement d'un plugin générateur de commandes. Pour cela l'utilisateur doit définir le jeu de données, ainsi que les champs étudiés. L'utilisateur doit aussi définir le nom de la commande et le format de la réponse. Le format d'utilisation des commandes générées est le suivant :
+```
+/cmd [nom commande] [paramètres commande]
+```
+
+todo generation -> json et form
 
 ## Membres du projet
 
