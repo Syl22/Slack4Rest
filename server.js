@@ -107,6 +107,7 @@ controller.on('slash_command', function (bot, message) {
         method: cmdFile.request.method,
         uri: cmdFile.request.uri,
         qs: mapObj(cmdFile.request.query_params, rParams),
+	qsStringifyOptions:{ allowDots: true },
         json: true
     };
 
