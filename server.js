@@ -31,7 +31,7 @@ controller.setupWebserver(process.env.PORT, function (err, webserver) {
             res.send('Success!');
         }
     });
-	upload();
+    upload();
 });
 
 controller.on('slash_command', function (bot, message) {
@@ -85,17 +85,14 @@ controller.on('slash_command', function (bot, message) {
     }
 
     function replaceAll(str, search, replacement) {
-            let target = str;
-            return target.replace(new RegExp(search, 'g'), replacement);
-    };
+        return str.replace(new RegExp(search, 'g'), replacement);
+    }
 
-    // TODO: paramètres avec espaces
-    //let args = message.text.split(" ");
     let regexp = /([^"]\S*|".+?")\s*/gm;
     let text = message.text;
     let args = text.split(regexp);
-    args = args.filter(ch=>ch);
-    for (var i = 0; i < args.length; i++) {
+    args = args.filter(ch => ch);
+    for (let i = 0; i < args.length; i++) {
         args[i] = replaceAll(args[i], "\"", "");
     }
     let cmd = args.shift();
@@ -107,8 +104,9 @@ controller.on('slash_command', function (bot, message) {
         method: cmdFile.request.method,
         uri: cmdFile.request.uri,
         qs: mapObj(cmdFile.request.query_params, rParams),
-	qsStringifyOptions:{ allowDots: true },
-        json: true
+        qsStringifyOptions: {allowDots: true},
+        json: true,
+        body: cmdFile.request.body
     };
 
     request(options, function (err, res, body) {
