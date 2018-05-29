@@ -9,7 +9,7 @@
     }
   },
   "response": {
-    "title": "Station $0",
+    "title": "Station $0 ligne $1",
     "text": "",
     "fields": {
       "Vélos disponibles": "$.records[0].fields.nombrevelosdisponibles",
