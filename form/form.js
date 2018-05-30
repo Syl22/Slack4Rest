@@ -1,5 +1,4 @@
-(function() {
-	function toJSONString( form ) {
+function toJSONString( form ) {
 		var obj = {};
 		var flagQuery = true;
 		var flagResp = true;
@@ -32,7 +31,9 @@
 					obj.request[name] = {};
 					flagQuery = false;
 				}
-				obj.request[name][value] = elements[i+1].value;
+				if(value != ""){
+					obj.request[name][value] = elements[i+1].value;
+				}
 				i++;
 
 			} else if(name === "fields"){
@@ -40,12 +41,13 @@
 					obj.response[name] = {};
 					flagResp = false;
 				}
-				obj.response[name][value] = elements[i+1].value;
+				if(value != ""){
+					obj.response[name][value] = elements[i+1].value;
+				}
 				i++; 
 			}
 		}
-
-		return JSON.stringify(obj, null, 2);
+		return obj;
 	}
 
 	document.addEventListener( "DOMContentLoaded", function() {
@@ -54,13 +56,11 @@
 		form.addEventListener( "submit", function( e ) {
 			e.preventDefault();
 			var json = toJSONString( this );
-			output.innerHTML = json;
+			output.innerHTML = "<h1>Aperçu :</h1>"+JSON.stringify(json, null, 2);
 
 		}, false);
 
 	});
-
-})();
 
 function addInputParam(){
     var div = document.getElementById("requestParamWrapper");
@@ -72,4 +72,17 @@ function addResponseField(){
 	var div = document.getElementById("responseFieldWrapper");
     div.insertAdjacentHTML('beforeend', '<input type="text" name="fields" class="addedResParam"/>');
     div.insertAdjacentHTML('beforeend', '<input type="text" name="fields" class="addedResParam"/>');
+}
+
+function envoyer(){
+	var json = toJSONString(document.getElementById( "formulaire"));
+	var xhr = new XMLHttpRequest();
+	xhr.open('POST', 'http://slack4rest.istic.univ-rennes1.fr/json', true, );
+	xhr.setRequestHeader('Content-type', 'application/json');
+	xhr.onreadystatechange = function () {
+		if(xhr.readyState === 4 && xhr.status === 200) {
+			console.log(xhr.responseText);
+		}
+	};
+	xhr.send(json);
 }

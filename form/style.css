@@ -1,8 +1,12 @@
 body {
-  max-width: 500px;
+  max-width: 70%;
+  font-family: arial;
 }
 
-
+h1{
+	font-family: arial;
+	margin: 0 0 1em 0;
+}
 
 form div {
   margin-bottom: 0.5em;
@@ -33,4 +37,16 @@ form div label, form div input {
 
 .addedReqParam, .addedResParam{
   margin: 0 7px 5px 0;
+}
+
+#output{
+	display: inline-block;
+	margin: 0 0 0 100px;
+	vertical-align: top;
+
+}
+
+#wrapper{
+	display: inline-block;
+	vertical-align: top;
 }
