@@ -1,5 +1,6 @@
 {
   "command": "post",
+  "nb_args": 2,
   "request": {
     "method": "POST",
     "uri": "https://jsonplaceholder.typicode.com/posts",

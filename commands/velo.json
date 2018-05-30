@@ -1,5 +1,6 @@
 {
   "command": "velo",
+  "nb_args": 1,
   "request": {
     "method": "GET",
     "uri": "https://data.explore.star.fr/api/records/1.0/search",

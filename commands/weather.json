@@ -1,5 +1,6 @@
 {
   "command": "weather",
+  "nb_args": 2,
   "request": {
     "method": "GET",
     "uri": "https://api.openweathermap.org/data/2.5/weather",
