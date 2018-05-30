@@ -1,0 +1,21 @@
+{
+  "command": "post",
+  "request": {
+    "method": "POST",
+    "uri": "https://jsonplaceholder.typicode.com/posts",
+    "body": {
+      "title": "$0",
+      "body": "$1",
+      "userId": "77"
+    }
+  },
+  "response": {
+    "title": "Infos du post créé",
+    "text": "",
+    "fields": {
+      "ID": "$.id",
+      "Titre": "$.title",
+      "Contenu": "$.body"
+    }
+  }
+}
