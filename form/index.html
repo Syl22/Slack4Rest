@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<title>Ajouter une API</title>
+	<script src="form.js"></script>
+	<link rel="stylesheet" type="text/css" href="style.css">
+
+
+</head>
+
+
+<!--ACTUAL FORM VALIDATION - SEE TRAVERSRY MEDIA END TUTO -->
+
+<body>
+	<div id="wrapper">
+		<h1>Input to JSON form</h1>
+		<form id="formulaire" action="#" method="post" >
+			<div>
+				<label for="name">Commande</label>
+				<input type="text" name="command" id="name" />
+			</div>
+			<div id="requestWrapper">
+				<div>
+					<label for="method">Méthode</label>
+			    	<select name="method">
+			    		<option value="GET" selected="selected">GET</option>
+			    		<option value="POST">POST</option>
+			    	</select>
+				</div>
+				<div>
+					<label for="name">URL de l'API</label>
+					<input type="text" name="uri" id="name" />
+				</div>
+				<div id="requestParamWrapper">
+					<label for="name" class="boutonChamps">Paramètres de la requête
+					</label><button id="addReqInput" type="button" onclick="addInputParam();">Ajouter un champ</button>
+					<br>
+					<input type="text" name="query_params" class="reqParam"/>
+					<input type="text" name="query_params" class="reqParam"/>
+					<input type="text" name="query_params" class="reqParam"/>
+					<input type="text" name="query_params" class="reqParam"/>
+				</div>
+			</div>
+			<div id="responseWrapper">
+				<div>
+					<label id="responsetype" for="name">Titre de la réponse</label>
+					<input type="text" name="title" id="name" />
+				</div>
+				<div>
+					<label for="name">Texte de la réponse</label>
+					<input type="text" name="text" id="name" />
+				</div>
+				<div id="responseFieldWrapper">
+					<label for="name" class="boutonChamps">Champs de la réponse</label>
+					<button type="button" onclick="addResponseField()" id="addResField">Ajouter un champ</button>
+					<br>
+					<input type="text" name="fields" class="resField"/>
+					<input type="text" name="fields" class="resField"/>
+					<input type="text" name="fields" class="resField"/>
+					<input type="text" name="fields" class="resField"/>
+				</div>
+			</div>
+			<p>
+				<input type="submit" value="Send"/>
+			</p>
+		</form>	
+		<pre id="output"></pre>
+	</div>
+</body>
+</html>
+
+
