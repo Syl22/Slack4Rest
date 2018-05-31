@@ -16,6 +16,10 @@
 				<label for="name">Commande</label>
 				<input type="text" name="command" id="name" />
 			</div>
+			<div>
+				<label for="name">Nombre d'arguments</label>
+				<input type="number" name="nb_args" id="name" />
+			</div>
 			<div id="requestWrapper">
 				<div>
 					<label for="method">Méthode</label>
@@ -58,7 +62,8 @@
 				</div>
 			</div>
 			<p>
-				<input type="submit" value="Aperçu"/>
+				<button type="button" onclick="apercu()" id="apercuButton">Aperçu</button>
+				<!--<input type="submit" value="Aperçu"/>-->
 				<button type="button" onclick="envoyer()" id="envoyerButton">Envoyer le json</button>
 			</p>
 			
