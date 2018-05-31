@@ -23,6 +23,11 @@ Développement d'un plugin générateur de commandes. Pour générer une command
 ```
 La génération des commandes se fait à partir d'un fichier json. Ce format pouvant être assez rebutant pour un utilisateur lambda, il peut être rempli à partir d'un formulaire un ligne.
 
+le lien du formulaire en ligne, ainsi que la liste des commandes déjà créées, peuvent être obtenus grâce à la commande suivante :
+```
+/cmd help
+```
+
 
 ## Membres du projet
 
