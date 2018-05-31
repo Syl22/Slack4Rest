@@ -57,7 +57,7 @@ controller.on('slash_command', function (bot, message) {
 
         bot.replyPrivate(message, "Usage : /cmd [command] [args...]\n"
         + "*Ajouter une commande* : http://slack4rest.istic.univ-rennes1.fr/ajoutcmd\n"
-        + "*Commandes disponibles* :"
+        + "*Commandes disponibles* :\n"
         + commandString);
 
         return;
