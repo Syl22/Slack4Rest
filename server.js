@@ -52,12 +52,12 @@ controller.on('slash_command', function (bot, message) {
     if (message.text === "" || message.text === "help") {
         let commandString = "";
         fs.readdirSync(commandFolder).forEach(file => {
-            commandString += file.replace(/\.[^/.]+$/, "");
+            commandString = commandString + "- " + file.replace(/\.[^/.]+$/, "") + "\n";
         })
 
         bot.replyPrivate(message, "Usage : /cmd [command] [args...]\n"
-        + "Ajouter une commande : http://slack4rest.istic.univ-rennes1.fr/ajoutcmd\n"
-        + "Commandes disponibles :"
+        + "*Ajouter une commande* : http://slack4rest.istic.univ-rennes1.fr/ajoutcmd\n"
+        + "*Commandes disponibles* :"
         + commandString);
 
         return;
