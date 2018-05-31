@@ -1,3 +1,4 @@
+const fs = require('fs');
 const hp = require('./helpers');
 
 /**
@@ -36,6 +37,28 @@ const buildErrorResponse = function (error) {
 };
 
 /**
+ * Build a Slack response with a user guide
+ *
+ * @returns the user guide
+ */
+const buildHelpResponse = function () {
+    let commandString = "";
+    fs.readdirSync("./commands/").forEach(file => {
+        commandString = commandString + "- " + file.replace(/\.[^/.]+$/, "") + "\n";
+    });
+
+    return {
+        attachments: [{
+            color: "4682B4",
+            text: "*Usage* : /cmd [command] [args...]\n"
+            + "*Ajouter une commande* : http://slack4rest.istic.univ-rennes1.fr/ajoutcmd\n"
+            + "*Commandes disponibles* :\n"
+            + commandString
+        }]
+    }
+};
+
+/**
  * Turn key:value fields from command file into Slack fields
  *
  * @param fields user command fields
@@ -59,3 +82,4 @@ function processCmdFields(fields, args, apiBody) {
 
 exports.error = buildErrorResponse;
 exports.ok = buildOkResponse;
+exports.help = buildHelpResponse;

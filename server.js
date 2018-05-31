@@ -4,9 +4,6 @@ const upload = require('./form/upload');
 const inputHandler = require('./components/inputHandler');
 const reqBuilder = require('./components/requestBuilder');
 const respBuilder = require('./components/responseBuilder');
-const fs = require('fs');
-
-const commandFolder = './commands/';
 
 if (!process.env.CLIENT_ID || !process.env.CLIENT_SECRET || !process.env.PORT || !process.env.VERIFICATION_TOKEN) {
     console.log('Error: Specify CLIENT_ID, CLIENT_SECRET, VERIFICATION_TOKEN and PORT in environment');
@@ -50,16 +47,7 @@ controller.on('slash_command', function (bot, message) {
 
     // if no text was supplied, treat it as a help command
     if (message.text === "" || message.text === "help") {
-        let commandString = "";
-        fs.readdirSync(commandFolder).forEach(file => {
-            commandString = commandString + "- " + file.replace(/\.[^/.]+$/, "") + "\n";
-        })
-
-        bot.replyPrivate(message, "*Usage* : /cmd [command] [args...]\n"
-        + "*Ajouter une commande* : http://slack4rest.istic.univ-rennes1.fr/ajoutcmd\n"
-        + "*Commandes disponibles* :\n"
-        + commandString);
-
+        bot.replyPrivate(message, respBuilder.help());
         return;
     }
 
