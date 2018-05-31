@@ -1,6 +1,6 @@
 const Botkit = require('botkit');
 const request = require('request');
-const upload = require('./upload');
+const upload = require('./form/upload');
 const inputHandler = require('./components/inputHandler');
 const reqBuilder = require('./components/requestBuilder');
 const respBuilder = require('./components/responseBuilder');
