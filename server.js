@@ -50,13 +50,15 @@ controller.on('slash_command', function (bot, message) {
 
     // if no text was supplied, treat it as a help command
     if (message.text === "" || message.text === "help") {
-        bot.replyPrivate(message, "Usage : /cmd [command] [args...]\n");
-        bot.replyPrivate(message, "Ajouter une commande : http://slack4rest.istic.univ-rennes1.fr/ajoutcmd\n");
-        bot.replyPrivate(message, "Commandes disponibles :");
-
+        let commandString = "";
         fs.readdirSync(commandFolder).forEach(file => {
-            bot.replyPrivate(message, file.replace(/\.[^/.]+$/, ""));
+            commandString += file.replace(/\.[^/.]+$/, "");
         })
+
+        bot.replyPrivate(message, "Usage : /cmd [command] [args...]\n"
+        + "Ajouter une commande : http://slack4rest.istic.univ-rennes1.fr/ajoutcmd\n"
+        + "Commandes disponibles :"
+        + commandString);
 
         return;
     }
