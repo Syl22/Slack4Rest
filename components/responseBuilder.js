@@ -1,7 +1,7 @@
 const hp = require('./helpers');
 
 /**
- * Build a Slack response
+ * Build a Slack response from a successfull API call
  *
  * @param cmd user command descriptor
  * @param args user command arguments
