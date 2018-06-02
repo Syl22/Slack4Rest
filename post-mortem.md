@@ -29,7 +29,7 @@ La commande est disponible en faisant /cmd sur slack.
 
 ## Bug connu
 
-Si l'erreur "error: Could not load team while processing webhook:  Error: could not find team [***]" se produit, faire ceci : 
+Si l'erreur "TypeError: Cannot read property 'user_id' of undefined" se produit, faire ceci : 
 
 * Ouvrir node_modules/botkit/lib/SlackBot.js
 * Trouver aux altentours de la ligne 230 le code suivant :
@@ -51,4 +51,4 @@ Si l'erreur "error: Could not load team while processing webhook:  Error: could 
     
     }
 ```
-Voir [https://github.com/howdyai/botkit/issues/590] et [https://github.com/howdyai/botkit/pull/1281].
+Voir https://github.com/howdyai/botkit/issues/590 et https://github.com/howdyai/botkit/pull/1281
