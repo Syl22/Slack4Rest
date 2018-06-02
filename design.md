@@ -27,7 +27,8 @@ la commande /cmd va appeler un fichier javascript server.js, qui va chercher le 
 La **non-uniformité des API Rest** est la principale contrainte de cette application. Nous avons opté pour que l'utilisateur nous donne toutes les informations nécessaires à une requête, mais cela pose deux problèmes :
 - Il faut créer une commande et tout définir pour chaque requête souhaitée.
 - L'application ne peut prédir la structure d'une API à partir d'un exemple de requête.
-Pour résoudre en partie ce problème, on pourrait autoriser un "héritage" de requêtes, où l'utilisateur peut spécifier une requête "mère" où aller chercher les informations manquantes. Une solution plus ambitieuse serait de restreindre notre application aux API respectant la spécification [OpenAPI](https://www.openapis.org/). Le nombre d'API possible s'en verrait réduit mais l'application serait alors bien plus autonome dans la découverte de ce type d'API.
+
+Pour résoudre en partie ce problème, on pourrait autoriser un "héritage" de requêtes, où l'utilisateur peut spécifier une requête "mère" où aller chercher les informations manquantes. Une solution plus ambitieuse serait de restreindre notre application aux API respectant la spécification [OpenAPI](https://www.openapis.org/). Le nombre d'API possible s'en verrait réduit mais l'application serait alors bien plus autonome.
 
 Un autre problème apparu rapidement concerne **l'authentification**. Étant souvent un processus en plusieurs étapes, nous avons préféré l'ignorer et se limiter à des requêtes 100% sans états. L'utilisateur peut toujours spécifier un token ou une clé d'API dans une requête, comme c'est le cas dans la commande exemple *weather*.
 
