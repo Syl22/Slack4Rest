@@ -14,14 +14,7 @@ Lorsque que la commande est appelée, de la façon suivante :
 ```
 /cmd [nom commande] [paramètres commande]
 ```
-la commande /cmd va appeler un fichier javascript server.js, qui va chercher le fichier json correspondant à la commande et l'analyser pour renvoyer un résultat.
-
-## Règles d'architecture
-
-
-## Modèle statique
-
-## Modèle dynamique
+La commande /cmd va faire appel au fichier server.js, qui va chercher le fichier json correspondant à la commande et l'analyser pour renvoyer un résultat.
 
 ## Contraintes d'analyse
 La **non-uniformité des API Rest** est la principale contrainte de cette application. Nous avons opté pour que l'utilisateur nous donne toutes les informations nécessaires à une requête, mais cela pose deux problèmes :
@@ -33,5 +26,5 @@ Pour résoudre en partie ce problème, on pourrait autoriser un "héritage" de r
 Un autre problème apparu rapidement concerne **l'authentification**. Étant souvent un processus en plusieurs étapes, nous avons préféré l'ignorer et se limiter à des requêtes 100% sans états. L'utilisateur peut toujours spécifier un token ou une clé d'API dans une requête, comme c'est le cas dans la commande exemple *weather*.
 
 ## Cadre de production
-Le plugin slack4Rest est hebergé par un serveur tournant sur une virtual machine de l'istic. Le développement à été réalisé en javascript, grâce à un repository git. Nous avons aussi utilisé l'API Slack et Botkit.
+Le plugin slack4Rest est hebergé par un serveur sur une machine virtuelle de l'ISTIC. Ce serveur s'exécute en Javascript grâce à NodeJS. Nous avons aussi utilisé l'API Slack et Botkit lors du développement.
 
