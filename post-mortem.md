@@ -34,18 +34,21 @@ Si l'erreur "error: Could not load team while processing webhook:  Error: could 
 * Ouvrir node_modules/botkit/lib/SlackBot.js
 * Trouver aux altentours de la ligne 230 le code suivant :
 ```
-    bot.identity = {
-    id: team.bot.user_id,
-    name: team.bot.name
-    };
     }
+    
+    bot.identity = {
+        id: team.bot.user_id,
+        name: team.bot.name
+    };
 ```     
-* Le remplacer par celui-ci :
+* Le remplacer par celui-ci (inclut l'affectation à bot.identity dans le if du dessus) :
 
 ```
-    }
     bot.identity = {
-    id: team.bot.user_id,
-    name: team.bot.name
+        id: team.bot.user_id,
+        name: team.bot.name
     };
+    
+    }
 ```
+Voir [https://github.com/howdyai/botkit/issues/590] et [https://github.com/howdyai/botkit/pull/1281].
