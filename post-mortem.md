@@ -52,3 +52,8 @@ Si l'erreur "TypeError: Cannot read property 'user_id' of undefined" se produit,
     }
 ```
 Voir https://github.com/howdyai/botkit/issues/590 et https://github.com/howdyai/botkit/pull/1281
+
+## Améliorations possibles
+
+* Pouvoir spécifier le type de retour (pour traiter une date par exmple)
+* Ajouter la compatibilité avec Swagger.io afin de faciliter l'ajout de commandes
